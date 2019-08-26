@@ -27,8 +27,10 @@ return  dat
         }
   return (
     <div style={{backgroundColor: 'white'}}>
-Welcome Photographer
+<p>Welcome Photographer</p>
+      <button onClick={localStorage.setItem('token',null)}>Sign Out</button>
     <Form >
+<p>Sign Up</p>
       <div>
         {touched.username && errors.username && <p>{errors.username}</p>}
         <Field type="text" name="username" placeholder="username" autoComplete="username" />
@@ -40,7 +42,7 @@ Welcome Photographer
       <button type='submit' disabled={isSubmitting}>Submit</button>
 
     </Form>
-Glad to have you, {localStorage.getItem('username')}
+<p>Glad to have you, {localStorage.getItem('username')}</p>
 </div>
   );
 }
@@ -68,7 +70,7 @@ const SignUp = withFormik({
 // console.log('values are',values)
     axios
       // https://reqres.in/api/users
-      .post("https://art-portfolio-bw.herokuapp.com/auth/register", {username: 'Joe Blox',password: 'zxcvbnmnb'})
+      .post("https://art-portfolio-bw.herokuapp.com/auth/register", values)
       // .post("https://yourdatabaseurlgoeshere.com", values)
       .then(res => {
         // setStatus(res.data);
