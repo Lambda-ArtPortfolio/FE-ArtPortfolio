@@ -4,9 +4,10 @@ import React, { useState, useEffect } from 'react';
 
 import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
-// import { axiosWithAuth } from './utils/axiosWithAuth';
+import { axiosWithAuth } from './utils/axiosWithAuth';
 
-import axios from 'axios';
+
+
 
 const Login = ({errors, touched, status}) => {
     const [users, setUsers] = useState([]);
@@ -23,10 +24,13 @@ const Login = ({errors, touched, status}) => {
     return (
         <div className="user-form">
             <Form>
+                <label>Username:</label>
                 <Field type="text" name="username" placeholder="username" />
                     {touched.username && errors.username && (
                         <p className="error">{errors.username}</p>
                     )}
+
+                <label>Password:</label>
                 <Field type="password" name="password" placeholder="password" />
                         {touched.username && errors.password && (
                             <p className="error">{errors.password}</p>
@@ -53,7 +57,7 @@ const FormikUserForm = withFormik({
     }),
 
     handleSubmit(values, {setStatus}) {
-        axios.post('https://art-portfolio-bw.herokuapp.com/auth/login', values)
+        axiosWithAuth().post('https://art-portfolio-bw.herokuapp.com/auth/login', values)
             //handle success
             .then(res => {
                 setStatus(res.data);
