@@ -5,6 +5,18 @@ import * as Yup from "yup";
 import axios from "axios";
 import {ArtistContext} from '../contexts/ArtistContext'
  
+const backgroundStyie = {
+  backgroundColor: 'white', textAlign: 'left',marginLeft: '10%', border: 'medium solid black',width: '300px'
+}
+const formStyle =
+  {marginLeft: '33%'}
+const welcomeStyle =
+{marginLeft: '20%'}
+const margin33Style =
+{marginLeft: '33%'}
+const margin1Style =
+{marginLeft: '1%'}
+
 function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, status }) {
   const { artist, setArtist } = useContext(ArtistContext);
   useEffect(() => {
@@ -19,24 +31,23 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
         setArtist('')
       }
   return (
-    <div style={{backgroundColor: 'white', textAlign: 'left',marginLeft: '10%', border: 'medium solid black',width: '300px'}}>
-<p style={{marginLeft: '20%'}}>Welcome Photographer</p>
+    <div style={backgroundStyie}>
+<p style={welcomeStyle}>Welcome Photographer</p>
       <button style={{marginLeft: '33%'}} onClick={signOut}>Sign Out</button>
     <Form >
-<p style={{marginLeft: '33%'}}>Sign Up</p>
-      <div style={{marginLeft: '33%'}}>
+<p style={formStyle}>Sign Up</p>
+      <div style={margin33Style}>
         {touched.username && errors.username && <p>{errors.username}</p>}
         <Field type="text" name="username" placeholder="username" autoComplete="username" />
       </div>
-      <div style={{marginLeft: '33%'}}>
+      <div style={margin33Style}>
         {touched.password && errors.password && <p>{errors.password}</p>}
         <Field type="password" name="password" placeholder="Password" autoComplete="current-password" />
       </div>
-      <button style={{marginLeft: '33%'}} type='submit' disabled={isSubmitting}>Submit</button>
+      <button style={margin33Style} type='submit' disabled={isSubmitting}>Submit</button>
 
     </Form>
-    <p style={{marginLeft: '1%'}}>Glad to have you {artist ? ', '+artist : ''}</p>
-    {/* <p style={{marginLeft: '1%'}}>Glad to have you {localStorage.getItem('username') ? ', '+localStorage.getItem('username') : ''}</p> */}
+    <p style={margin1Style}>Glad to have you {artist ? ', '+artist : ''}</p>
 </div>
   );
 }
