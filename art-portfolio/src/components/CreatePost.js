@@ -33,13 +33,13 @@ useEffect(() => {
 
       const sendPost = () => {
         axios({
-          url:'https://art-portfolio-bw.herokuapp.com/art/',
+          url:'',
           method: 'post',
           headers: {
             Authorization: localStorage.getItem('token')
           },
           data:{
-            message: post.message
+            description: post.description
            }
         })
         .then((res) => {
@@ -65,7 +65,7 @@ useEffect(() => {
              <textarea cols={30} rows={10}
                 type="text"
                 name="message"
-                placeholder="Details of your submission"
+                placeholder="Please, add details"
                 value={post.message}
                 onChange={handleChange}
              />
