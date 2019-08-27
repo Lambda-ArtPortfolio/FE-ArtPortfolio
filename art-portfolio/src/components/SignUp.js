@@ -33,7 +33,7 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
   return (
     <div style={backgroundStyie}>
 <p style={welcomeStyle}>Welcome Photographer</p>
-      <button style={{marginLeft: '33%'}} onClick={signOut}>Sign Out</button>
+      <button style={margin33Style} onClick={signOut}>Sign Out</button>
     <Form >
 <p style={formStyle}>Sign Up</p>
 <div style={margin33Style}>
