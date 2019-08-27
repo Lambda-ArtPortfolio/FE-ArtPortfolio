@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 // import ReactDOM from "react-dom";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -6,7 +6,6 @@ import axios from "axios";
 import {ArtistContext} from '../contexts/ArtistContext'
  
 function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, status }) {
-  const [users, setUsers] = useState([])
   const { artist, setArtist } = useContext(ArtistContext);
   useEffect(() => {
     if (status) {
@@ -35,7 +34,8 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
       <button style={{marginLeft: '33%'}} type='submit' disabled={isSubmitting}>Submit</button>
 
     </Form>
-<p style={{marginLeft: '1%'}}>Glad to have you {localStorage.getItem('username') ? ', '+localStorage.getItem('username') : ''}</p>
+    <p style={{marginLeft: '1%'}}>Glad to have you {artist ? ', '+artist : ''}</p>
+    {/* <p style={{marginLeft: '1%'}}>Glad to have you {localStorage.getItem('username') ? ', '+localStorage.getItem('username') : ''}</p> */}
 </div>
   );
 }
