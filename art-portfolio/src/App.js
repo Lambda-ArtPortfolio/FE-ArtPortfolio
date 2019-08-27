@@ -12,6 +12,10 @@ import {ArtistContext} from './contexts/ArtistContext.js'
 // import Login from './components/Login';
 import SignUp from './components/SignUp';
 
+//Component - Alexis
+// import Login from './components/Login';
+import AppRouter from './components/AppRouter';
+
 function App() {
 	const [artist, setArtist] = useState();
 
