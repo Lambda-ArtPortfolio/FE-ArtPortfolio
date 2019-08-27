@@ -73,7 +73,7 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
       <LoginBtn style={margin33Style} type='submit' disabled={isSubmitting}>Sign UP</LoginBtn>
 
     </Form>
-    <p style={margin1Style}>Glad to have you {artist ? ', '+artist : ''}</p>
+    <p style={margin1Style}>Glad to have you{artist ? ', '+artist : ''}</p>
     </Context>
 </div>
 </div>
