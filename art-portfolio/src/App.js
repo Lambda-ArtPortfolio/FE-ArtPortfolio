@@ -10,6 +10,12 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import Login from './components/Login';
 import PostCard from './components/PostCard';
+import React from 'react';
+import './App.css';
+
+//Component - Alexis
+// import Login from './components/Login';
+import AppRouter from './components/AppRouter';
 
 function App() {
   const [list, setList] = useState([])
@@ -75,8 +81,9 @@ function App() {
 
 
   return (
-     <div className="port-container">
-       Components
+    <div className="App">
+      <AppRouter />
+      {/* <Login /> */}
     </div>
   )
 }
