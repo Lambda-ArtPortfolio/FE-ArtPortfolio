@@ -16,6 +16,7 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
       function signOut () {
         localStorage.setItem('token','')
         localStorage.setItem('username','')
+        setArtist('')
       }
   return (
     <div style={{backgroundColor: 'white', textAlign: 'left',marginLeft: '10%', border: 'medium solid black',width: '300px'}}>
