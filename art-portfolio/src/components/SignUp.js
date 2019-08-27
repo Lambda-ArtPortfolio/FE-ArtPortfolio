@@ -4,18 +4,36 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import {ArtistContext} from '../contexts/ArtistContext'
- 
+import { Line1, Line2, Form as FormStyle, Context, Header, LoginBtn } from './StyledWidgets';
+import '../App.css'
+
 const backgroundStyie = {
   backgroundColor: 'white', textAlign: 'left',marginLeft: '10%', border: 'medium solid black',width: '300px'
 }
-const formStyle =
+let formStyle =
   {marginLeft: '33%'}
 const welcomeStyle =
 {marginLeft: '20%'}
 const margin33Style =
 {marginLeft: '33%'}
+const marginWStyle =
+{marginLeft: '40%', width: '20%'}
 const margin1Style =
 {marginLeft: '1%'}
+
+formStyle = {
+    backgroundColor: '#DCDCDC',
+    margin: '0 auto',
+    marginTop: '30px',
+    border: '2px solid #E3E1E1',
+    borderRadius: '12px',
+    boxShadow: '5px 5px 8px #BFBFBF',
+    width: '50%',
+    alignItems: 'center',
+    height: '500px',
+    display: 'flex',
+    justifyContent: 'center'
+}
 
 function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, status }) {
   const { artist, setArtist } = useContext(ArtistContext);
@@ -31,27 +49,35 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
         setArtist('')
       }
   return (
-    <div style={backgroundStyie}>
-<p style={welcomeStyle}>Welcome Photographer</p>
-      <button style={margin33Style} onClick={signOut}>Sign Out</button>
-    <Form >
-<p style={formStyle}>Sign Up</p>
-<div style={margin33Style}>
-        {touched.name && errors.name && <p>{errors.name}</p>}
+<div className='crossed' style={formStyle}>
+<div>
+      
+                      <Context>
+                    <Header>
+                    <div style={{color: 'black', fontSize: '32px'}}>Display Your Art</div >
+                    <div style={{color: 'black'}}>We'll Do The Rest</div >
+                    </Header>
+
+      <button style={marginWStyle} onClick={signOut}>Sign Out</button>
+    <Form>
+<div style={margin33Style}>Name
+        {touched.name && errors.name && <p style={{color: 'red'}}>{errors.name}</p>}
         <Field type="text" name="name" placeholder="name" autoComplete="name" />
       </div>
-      <div style={margin33Style}>
-        {touched.username && errors.username && <p>{errors.username}</p>}
+      <div style={margin33Style}>Username
+        {touched.username && errors.username && <p style={{color: 'red'}}>{errors.username}</p>}
         <Field type="text" name="username" placeholder="username" autoComplete="username" />
       </div>
-      <div style={margin33Style}>
-        {touched.password && errors.password && <p>{errors.password}</p>}
+      <div style={margin33Style}>Password
+        {touched.password && errors.password && <p style={{color: 'red'}}>{errors.password}</p>}
         <Field type="password" name="password" placeholder="Password" autoComplete="current-password" />
       </div>
-      <button style={margin33Style} type='submit' disabled={isSubmitting}>Submit</button>
+      <LoginBtn style={margin33Style} type='submit' disabled={isSubmitting}>Sign UP</LoginBtn>
 
     </Form>
-    <p style={margin1Style}>Glad to have you {artist ? ', '+artist : ''}</p>
+    {/* <p style={margin1Style}>Glad to have you {artist ? ', '+artist : ''}</p> */}
+    </Context>
+</div>
 </div>
   );
 }
