@@ -4,16 +4,14 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import {ArtistContext} from '../contexts/ArtistContext'
-import { Line1, Line2, Form as FormStyle, Context, Header, LoginBtn } from './StyledWidgets';
+import { Context, Header, LoginBtn } from './StyledWidgets';
 import '../App.css'
 
-const backgroundStyie = {
-  backgroundColor: 'white', textAlign: 'left',marginLeft: '10%', border: 'medium solid black',width: '300px'
-}
+// const backgroundStyie = {
+//   backgroundColor: 'white', textAlign: 'left',marginLeft: '10%', border: 'medium solid black',width: '300px'
+// }
 let formStyle =
   {marginLeft: '33%'}
-const welcomeStyle =
-{marginLeft: '20%'}
 const margin33Style =
 {marginLeft: '33%'}
 const marginWStyle =
@@ -42,7 +40,7 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
       console.log('status',status)
       setArtist(status);
     }
-  }, [status]);
+  }, [status,setArtist]);
       function signOut () {
         localStorage.setItem('token','')
         localStorage.setItem('username','')
@@ -75,7 +73,7 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
       <LoginBtn style={margin33Style} type='submit' disabled={isSubmitting}>Sign UP</LoginBtn>
 
     </Form>
-    {/* <p style={margin1Style}>Glad to have you {artist ? ', '+artist : ''}</p> */}
+    <p style={margin1Style}>Glad to have you {artist ? ', '+artist : ''}</p>
     </Context>
 </div>
 </div>
