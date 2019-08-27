@@ -1,19 +1,31 @@
 import React from 'react';
 import './App.css';
-//Component - Alexis
-// import Login from './components/Login';
+import React, { useState, useContext} from 'react';
+import {ArtistContext} from './contexts/ArtistContext.js'
 import AppRouter from './components/AppRouter';
-import ProfilePage from './components/ProfilePage';
+
 
 function App() {
   
-  return (
-    <div className="App">
-      <AppRouter />
-      
-      {/* <Login /> */}
-    </div>
-  )
+
+	const [artist, setArtist] = useState();
+
+	return (
+		<div className="App">
+	<ArtistContext.Provider value={{ artist, setArtist }}>
+			<Navigation artist={artist} />
+
+      <main>
+   
+ <AppRouter />
+    
+    </main>
+    
+	</ArtistContext.Provider>
+	</div>
+	);
 }
 
 export default App;
+
+

@@ -1,70 +1,83 @@
 //* Alexis Panyathong's Section *//
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useReducer } from 'react';
+import { reducer, initialState } from '../reducers/LoginReducer';
 
-import { Form, Field, withFormik } from 'formik';
-import * as Yup from 'yup';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
-
-
+import { axiosWithAuth } from './utils/axiosWithAuth';
+import { Form, Context, Header, LoginBtn } from './StyledWidgets';
 
 
-const Login = ({errors, touched, status}) => {
-    const [users, setUsers] = useState([]);
 
-    console.log(users);
 
-    useEffect(() => {
-        if(status) {
-            setUsers([...users, status]);
-        }
+const Login = () => {
+    const [user, setUser] = useState({username: '', password: ''});
+    const [state, dispatch] = useReducer(reducer, initialState);
 
-    }, [status]);
+    const handleChanges = e => {
+        setUser({...user, [e.target.name]: e.target.value});
+    };
 
-    return (
-        <div className="user-form">
-            <Form>
-                <label>Username:</label>
-                <Field type="text" name="username" placeholder="username" />
-                    {touched.username && errors.username && (
-                        <p className="error">{errors.username}</p>
-                    )}
+    const login = e => {
+        e.preventDefault();
 
-                <label>Password:</label>
-                <Field type="password" name="password" placeholder="password" />
-                        {touched.username && errors.password && (
-                            <p className="error">{errors.password}</p>
-                        )}
-
-                <button type="submit">Submit</button>
-                
-            </Form>
-        </div>
-    )
-}
-
-const FormikUserForm = withFormik({
-    mapPropsToValues({username, password}) {
-        return {
-            username: username || '',
-            password: password || ''
-        };
-    },
-
-    validationSchema: Yup.object().shape({
-        username: Yup.string().required('* Required to have a username.'),
-        password: Yup.string().required('* Required to have a password.')
-    }),
-
-    handleSubmit(values, {setStatus}) {
-        axiosWithAuth().post('https://art-portfolio-bw.herokuapp.com/auth/login', values)
+        axiosWithAuth().post('https://art-portfolio-bw.herokuapp.com/auth/login', user)
             //handle success
             .then(res => {
-                setStatus(res.data);
+                console.log(res);
+
+                localStorage.setItem('token', res.data.payload);
+
+                dispatch({ type: 'LOGIN', payload: res.data});
             })
             //handle error
             .catch(err => console.log('Error, please try again', err.response));
-    }
-})(Login);
 
-export default FormikUserForm;
+            setUser('');
+    };
+
+    console.log(state);
+
+   
+
+    return (
+        <>
+            <Form>
+                <Context>
+                    <Header>
+                    <h2>Welcome Back</h2>
+                    </Header>
+
+                    <div className="form-group">
+                        <label>Username: </label>
+                        <input 
+                            className="form-group"
+                            type="username"
+                            name="username"
+                            placeholder="username"
+                            value={user.username} required
+                            onChange={handleChanges}
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Password: </label>
+                        <input 
+                            className="form-group"
+                            type="password"
+                            name="password"
+                            placeholder="password"
+                            value={user.password} required
+                            onChange={handleChanges}
+                        />
+                    </div>
+
+                    <LoginBtn onClick={login} type="submit">Submit</LoginBtn>
+                </Context> 
+            </Form>
+        </>
+    )
+}
+
+
+
+export default Login;
