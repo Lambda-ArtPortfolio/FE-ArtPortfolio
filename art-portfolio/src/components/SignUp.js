@@ -36,6 +36,10 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
       <button style={{marginLeft: '33%'}} onClick={signOut}>Sign Out</button>
     <Form >
 <p style={formStyle}>Sign Up</p>
+<div style={margin33Style}>
+        {touched.name && errors.name && <p>{errors.name}</p>}
+        <Field type="text" name="name" placeholder="name" autoComplete="name" />
+      </div>
       <div style={margin33Style}>
         {touched.username && errors.username && <p>{errors.username}</p>}
         <Field type="text" name="username" placeholder="username" autoComplete="username" />
@@ -54,14 +58,18 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
 
 const SignUp = withFormik({
   
-  mapPropsToValues({ username, password }) {
+  mapPropsToValues({ name, username, password }) {
     return {
+      name: name || "",
       username: username || "",
       password: password || ""
     };
   },
   validationSchema: Yup.object().shape({
-    username: Yup.string()
+    name: Yup.string()
+      .min(2,"name not valid")
+      .required("name is required"),
+      username: Yup.string()
       .min(2,"username not valid")
       .required("username is required"),
     password: Yup.string()
@@ -76,9 +84,10 @@ const SignUp = withFormik({
     axios
       .post("https://art-portfolio-bw.herokuapp.com/auth/register", values)
       .then(res => {
-        localStorage.setItem('token',res.data.token)
-        localStorage.setItem('username',res.data.added.username)
-        setStatus(res.data.added.username);
+        console.log('post',res)
+          localStorage.setItem('token',res.data.token)
+        localStorage.setItem('username',res.data.userInfo.name)
+        setStatus(res.data.userInfo.name);
         axios
  .get("https://art-portfolio-bw.herokuapp.com/")
  .then(res => {
