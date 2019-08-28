@@ -17,7 +17,7 @@ const margin33Style =
 const marginWStyle =
 {marginLeft: '40%', width: '20%'}
 const margin1Style =
-{marginLeft: '-30%', fontStyle: 'oblique'}
+{marginLeft: '1%', fontStyle: 'oblique'}
 
 formStyle = {
   backgroundImage:
@@ -76,7 +76,7 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
       <LoginBtn style={margin33Style} type='submit' disabled={isSubmitting}>Sign UP</LoginBtn>
 
     </Form>
-    <p style={margin1Style}>Glad to have you{artist ? ', '+artist : ''}</p>
+    <div style={margin1Style}><div>Glad to have you</div><div>{artist ? artist : ''}</div></div>
     </Context>
 </div>
 </div>
