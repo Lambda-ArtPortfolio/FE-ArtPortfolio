@@ -4,18 +4,37 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import {ArtistContext} from '../contexts/ArtistContext'
- 
-const backgroundStyie = {
-  backgroundColor: 'white', textAlign: 'left',marginLeft: '10%', border: 'medium solid black',width: '300px'
-}
-const formStyle =
+import { Context, Header, LoginBtn } from './StyledWidgets';
+import '../App.css'
+
+// const backgroundStyie = {
+//   backgroundColor: 'white', textAlign: 'left',marginLeft: '10%', border: 'medium solid black',width: '300px'
+// }
+let formStyle =
   {marginLeft: '33%'}
-const welcomeStyle =
-{marginLeft: '20%'}
 const margin33Style =
 {marginLeft: '33%'}
+const marginWStyle =
+{marginLeft: '40%', width: '20%'}
 const margin1Style =
-{marginLeft: '1%'}
+{marginLeft: '1%', fontStyle: 'oblique'}
+
+formStyle = {
+  backgroundImage:
+  `linear-gradient(to bottom, rgba(255,255,0,0.5), rgba(0,0,255,0.5)),
+  url('https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/68680488_10158110637571323_2872412301510574080_o.jpg?_nc_cat=109&_nc_oc=AQlKM8gAcXdVTYfaO7VQPB4jj5psofWNDVsWZaqS7ga73viH3q6JdsX6N1kS7HkMp2DFgwqXw5RJQt223U9wGWT7&_nc_ht=scontent-iad3-1.xx&oh=ef3c44753a30d5188ee82e1b1036112e&oe=5E022BA6')`,
+    backgroundColor: '#DCDCDC',
+    margin: '0 auto',
+    marginTop: '30px',
+    border: '2px solid #E3E1E1',
+    borderRadius: '12px',
+    boxShadow: '5px 5px 8px #BFBFBF',
+    width: '50%',
+    alignItems: 'center',
+    height: '500px',
+    display: 'flex',
+    justifyContent: 'center'
+}
 
 function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, status }) {
   const { artist, setArtist } = useContext(ArtistContext);
@@ -24,44 +43,60 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
       console.log('status',status)
       setArtist(status);
     }
-  }, [status]);
+  }, [status,setArtist]);
       function signOut () {
         localStorage.setItem('token','')
         localStorage.setItem('username','')
         setArtist('')
       }
   return (
-    <div style={backgroundStyie}>
-<p style={welcomeStyle}>Welcome Photographer</p>
-      <button style={{marginLeft: '33%'}} onClick={signOut}>Sign Out</button>
-    <Form >
-<p style={formStyle}>Sign Up</p>
-      <div style={margin33Style}>
-        {touched.username && errors.username && <p>{errors.username}</p>}
+<div className='crossed' style={formStyle}>
+<div>
+      
+                      <Context>
+                    <Header>
+                    <div style={{color: 'black', fontSize: '32px'}}>Display Your Art</div >
+                    <div style={{color: 'black'}}>We'll Do The Rest</div >
+                    </Header>
+
+      <button style={marginWStyle} onClick={signOut}>Sign Out</button>
+    <Form>
+<div style={margin33Style}>Name
+        {touched.name && errors.name && <p style={{color: 'red'}}>{errors.name}</p>}
+        <Field type="text" name="name" placeholder="name" autoComplete="name" />
+      </div>
+      <div style={margin33Style}>Username
+        {touched.username && errors.username && <p style={{color: 'red'}}>{errors.username}</p>}
         <Field type="text" name="username" placeholder="username" autoComplete="username" />
       </div>
-      <div style={margin33Style}>
-        {touched.password && errors.password && <p>{errors.password}</p>}
+      <div style={margin33Style}>Password
+        {touched.password && errors.password && <p style={{color: 'red'}}>{errors.password}</p>}
         <Field type="password" name="password" placeholder="Password" autoComplete="current-password" />
       </div>
-      <button style={margin33Style} type='submit' disabled={isSubmitting}>Submit</button>
+      <LoginBtn style={margin33Style} type='submit' disabled={isSubmitting}>Sign UP</LoginBtn>
 
     </Form>
-    <p style={margin1Style}>Glad to have you {artist ? ', '+artist : ''}</p>
+    <div style={margin1Style}><div>Glad to have you</div><div>{artist ? artist : ''}</div></div>
+    </Context>
+</div>
 </div>
   );
 }
 
 const SignUp = withFormik({
   
-  mapPropsToValues({ username, password }) {
+  mapPropsToValues({ name, username, password }) {
     return {
+      name: name || "",
       username: username || "",
       password: password || ""
     };
   },
   validationSchema: Yup.object().shape({
-    username: Yup.string()
+    name: Yup.string()
+      .min(2,"name not valid")
+      .required("name is required"),
+      username: Yup.string()
       .min(2,"username not valid")
       .required("username is required"),
     password: Yup.string()
@@ -76,9 +111,10 @@ const SignUp = withFormik({
     axios
       .post("https://art-portfolio-bw.herokuapp.com/auth/register", values)
       .then(res => {
-        localStorage.setItem('token',res.data.token)
-        localStorage.setItem('username',res.data.added.username)
-        setStatus(res.data.added.username);
+        console.log('post',res)
+          localStorage.setItem('token',res.data.token)
+        localStorage.setItem('username',res.data.userInfo.name)
+        setStatus(res.data.userInfo.name);
         axios
  .get("https://art-portfolio-bw.herokuapp.com/")
  .then(res => {
