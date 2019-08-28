@@ -3,7 +3,7 @@
 import React, { useState, useReducer } from 'react';
 import { reducer, initialState } from '../reducers/LoginReducer';
 
-import { axiosWithAuth } from './utils/axiosWithAuth';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { Form, Context, Header, LoginBtn } from './StyledWidgets';
 
 

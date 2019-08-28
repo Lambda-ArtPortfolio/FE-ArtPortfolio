@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 import Login from './Login';
 import ProfilePage from './ProfilePage';
+import SignUp from './SignUp';
 
 
 //Styled Components
@@ -20,6 +21,7 @@ const AppRouter = () => {
                     <li>
                         <Link to='/login'>Login</Link>
                         <Link to ='/profile'>Profile</Link>
+                        <Link to = '/signUp'>Sign-Up</Link>
                     </li>
                 </ul>
             </div>
@@ -27,6 +29,7 @@ const AppRouter = () => {
             <Switch>
                 <Route path='/login' component={Login} />
                 <Route path='/profile' component={ProfilePage} />
+                <Route path= '/signUp' component={SignUp} />
             </Switch>
         </Router>
     )
