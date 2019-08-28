@@ -1,32 +1,28 @@
 import React from "react";
 import styled from "styled-components"
 
-const Post = ({deletePost, editPost, ...props}) => {
-  
-
+const Post = ({deletePost, setPostToEdit, post, ...props}) => {
+  console.log("postToEdit",setPostToEdit)
   return (
   <PostContainer className = "container">
   <div className = "posts">
     <img className = "images" src = {props.item.image} />
     <p>Description: {props.item.description}</p>
     <button className="del-btn" onClick={e => deletePost(e, props.item.id)}> X </button>
-    <button className= "edit-btn" onClick={() => editPost(props.item)}>EDIT ME</button>
+    <button className= "edit-btn" onClick={e => setPostToEdit(e, props.item.id)}>EDIT ME</button>
   </div>  
+  {console.log("postToEdit",setPostToEdit)}
 </PostContainer>
-  
   );
 };
 
 export default Post;
 
 const PostContainer = styled.div`
-.container{
-    display: flex;
-    flex-direction: row;
-}
+
 .posts{
     background: white;
-    width: 300px;
+    width: 400px;
     display: flex;
     flex-direction: column;
     border: 1px solid black;
@@ -60,7 +56,7 @@ const PostContainer = styled.div`
     display: inline-block;
     position: relative;
     bottom: 33rem;
-    left:14rem;
+    left:20rem;
     outline: none;
     background: none;
     border: none;

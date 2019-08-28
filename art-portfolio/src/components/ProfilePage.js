@@ -4,12 +4,12 @@ import CreatePost from "./CreatePost";
 import Posts from './Posts'
 import styled from 'styled-components';
 
-const ProfilePage = ({updatedPost, list, setList, postEdit, ...props}) => {
+const ProfilePage = ({updatedPost, post, list, setList, postEdit, ...props}) => {
   const [profilePage, setProfilePage] = useState([]);
-
+  const [postToEdit, setPostToEdit]= useState(null);  
 
   useEffect(() => {
-  
+    // console.log(postToEdit);
     axiosWithAuth()
     .get("/art")
     .then(res => {
@@ -32,47 +32,45 @@ const ProfilePage = ({updatedPost, list, setList, postEdit, ...props}) => {
         console.log("Err: ", err);
       });
   };
-  const [editedPost, setEditedPost] = useState(null)
-  const editPost = (post) => {
-  const editIndex = profilePage.indexOf(post);
 
-  const id = profilePage[editIndex].id
-   // e.preventDefault();
-    axiosWithAuth({
-      data: {
-        description: post.description,
-        image: post.image
-      }
-      })
+  const editPost = (e, post, id) => {
+  const editIndex = list.indexOf(postToEdit);
+  debugger 
+    e.preventDefault();
+    axiosWithAuth()
       .put(`/art/${id}`)
       .then(res => {
-        setProfilePage(
-          profilePage.map((post,index) => (index === editIndex ? res.data.art : post)),
-        );
+        setProfilePage(profilePage.map((info, index) => (index === editIndex ? post : info)));
       })
       .catch(err => {
-        console.log("Error: ", err);
+        console.log("Err: ", err);
       });
   };
+
+
+
 
   return (
   
    <div>
       <CreatePost {...props}
-      list={list}
-      setList={setList}
+      profilePage={profilePage}
+      setProfilePage={setProfilePage}
+      postToEdit={postToEdit}
+      setPostToEdit={setPostToEdit}
       editPost={editPost}
-      setEditedPost={setEditedPost}
-      postEdit={postEdit}
+      
       />
       
      <PostList>
-       {profilePage.map(item => {
+       {profilePage.map((item, index) => {
          return(
            <Posts
+           key={index}
            item = {item}
+           setPostToEdit={setPostToEdit}
            deletePost = {deletePost}
-           editPost = {editPost} />
+           />
          )
          })}
       </PostList>
