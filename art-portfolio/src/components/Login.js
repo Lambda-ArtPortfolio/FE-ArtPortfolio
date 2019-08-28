@@ -15,6 +15,7 @@ const Login = () => {
 
     const handleChanges = e => {
         setUser({...user, [e.target.name]: e.target.value});
+        
     };
 
     const login = e => {
@@ -31,8 +32,11 @@ const Login = () => {
             })
             //handle error
             .catch(err => console.log('Error, please try again', err.response));
+                e.preventDefault();
 
-            setUser('');
+
+            setUser({username: '', password: ''});
+            alert('* Username or password is invalid, please try again')
     };
 
     console.log(state);
