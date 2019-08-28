@@ -5,7 +5,6 @@ import * as Yup from "yup";
 import axios from "axios";
 import {ArtistContext} from '../contexts/ArtistContext'
 import { Context, Header, LoginBtn } from './StyledWidgets';
-import '../App.css'
 
 // const backgroundStyie = {
 //   backgroundColor: 'white', textAlign: 'left',marginLeft: '10%', border: 'medium solid black',width: '300px'
@@ -50,7 +49,7 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
         setArtist('')
       }
   return (
-<div className='crossed' style={formStyle}>
+<div style={formStyle}>
 <div>
       
                       <Context>
