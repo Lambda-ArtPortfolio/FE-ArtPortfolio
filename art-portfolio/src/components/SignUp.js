@@ -17,7 +17,7 @@ const margin33Style =
 const marginWStyle =
 {marginLeft: '40%', width: '20%'}
 const margin1Style =
-{marginLeft: '1%'}
+{marginLeft: '-30%', fontStyle: 'oblique'}
 
 formStyle = {
   backgroundImage:
