@@ -11,10 +11,15 @@ import { Context, Header, LoginBtn } from './StyledWidgets';
 // }
 let formStyle =
   {marginLeft: '33%'}
+<<<<<<< HEAD
   const margin33Style =
   {marginLeft: '33%', color: 'white'}
   const margin33BStyle =
 {marginLeft: '33%', color: 'black'}
+=======
+const margin33Style =
+{marginLeft: '33%', color: 'white'}
+>>>>>>> 390c060b3bf20bce97d9eb1343078d0f691c3926
 const marginWStyle =
 {marginLeft: '40%', width: '20%'}
 const margin1Style =
