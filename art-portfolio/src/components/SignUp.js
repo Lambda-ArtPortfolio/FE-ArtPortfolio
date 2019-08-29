@@ -29,6 +29,7 @@ formStyle = {
     borderRadius: '12px',
     boxShadow: '5px 5px 8px #BFBFBF',
     width: '30%',
+    minWidth: '300px',
     alignItems: 'center',
     height: '360px',
     display: 'flex',
