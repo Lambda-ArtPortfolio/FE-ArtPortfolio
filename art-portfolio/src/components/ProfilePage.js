@@ -63,7 +63,7 @@ const ProfilePage = ({updatedPost, list, setList, postEdit, ...props}) => {
       setList={setList}
       editPost={editPost}
       setEditedPost={setEditedPost}
-      postEdit={postEdit}
+      postEdit={editedPost}
       />
       
      <PostList>

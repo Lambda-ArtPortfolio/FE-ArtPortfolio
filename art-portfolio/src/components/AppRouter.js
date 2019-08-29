@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+
 
 import Login from './Login';
 import ProfilePage from './ProfilePage';
@@ -11,7 +11,7 @@ import NavTab from './NavTab';
 
 
 //Styled Components
-import { Nav } from './StyledWidgets';
+
 
 const AppRouter = () => {
   
