@@ -12,6 +12,7 @@ useEffect(() => {
     }
 
     }, [postToEdit])
+ 
 
 
     const handleChange = e => {
@@ -23,7 +24,6 @@ useEffect(() => {
     };
 
     const handleSubmit = e => {
-      debugger
     e.preventDefault();
     if (postToEdit) {
         editPost(post);
@@ -59,7 +59,6 @@ useEffect(() => {
     
 
     return (
-      <div>
      <Form>
      <form onSubmit={handleSubmit}>
       <fieldset className = "fieldbox"> 
@@ -89,7 +88,7 @@ useEffect(() => {
        </fieldset>
       </form> 
      </Form>
-     </div>
+     
 
     );
 
