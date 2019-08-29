@@ -24,7 +24,7 @@ formStyle = {
   url('https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/68680488_10158110637571323_2872412301510574080_o.jpg?_nc_cat=109&_nc_oc=AQlKM8gAcXdVTYfaO7VQPB4jj5psofWNDVsWZaqS7ga73viH3q6JdsX6N1kS7HkMp2DFgwqXw5RJQt223U9wGWT7&_nc_ht=scontent-iad3-1.xx&oh=ef3c44753a30d5188ee82e1b1036112e&oe=5E022BA6')`,
     backgroundColor: '#DCDCDC',
     margin: '0 auto',
-    marginTop: '30px',
+    marginTop: '80px',
     border: '2px solid #E3E1E1',
     borderRadius: '12px',
     boxShadow: '5px 5px 8px #BFBFBF',
