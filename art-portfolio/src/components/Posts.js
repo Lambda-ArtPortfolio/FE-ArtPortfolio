@@ -6,8 +6,8 @@ const Post = ({deletePost, setPostToEdit, post, ...props}) => {
   return (
   <PostContainer className = "container">
   <div className = "posts">
-    <img className = "images" src = {props.item.image} />
-    <p>Description: {props.item.description}</p>
+    <img className = "images" src = {post.image} />
+    <p>Description: {post.description}</p>
     <button className="del-btn" onClick={e => deletePost(e, props.item.id)}> X </button>
     <button className= "edit-btn" onClick={e => setPostToEdit(e, post)}>EDIT ME</button>
   </div>  

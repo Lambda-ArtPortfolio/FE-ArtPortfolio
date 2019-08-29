@@ -6,10 +6,11 @@ import styled from 'styled-components';
 
 const ProfilePage = ({updatedPost, post, postEdit, ...props}) => {
   const [profilePage, setProfilePage] = useState([]);
+  const[postToEdit, setPostToEdit] = useState(null)
   
 
   useEffect(() => {
-    // console.log(postToEdit);
+    
     axiosWithAuth()
     .get("/art")
     .then(res => {
@@ -33,7 +34,6 @@ const ProfilePage = ({updatedPost, post, postEdit, ...props}) => {
       });
   };
 
-  const[postToEdit, setPostToEdit] = useState(null)
   const editPost =  post  => {
   const editIndex = profilePage.indexOf(postToEdit);
   const id = profilePage[editIndex].id
@@ -59,6 +59,7 @@ const ProfilePage = ({updatedPost, post, postEdit, ...props}) => {
   return (
   
    <div>
+     
       <CreatePost {...props}
       profilePage={profilePage}
       setProfilePage={setProfilePage}
@@ -69,11 +70,11 @@ const ProfilePage = ({updatedPost, post, postEdit, ...props}) => {
       />
       
      <PostList>
-       {profilePage.map((item, index) => {
+       {profilePage.map((post, index) => {
          return(
            <Posts
            key={index}
-           item = {item}
+           post = {post}
            setPostToEdit={setPostToEdit}
            deletePost = {deletePost}
            />
