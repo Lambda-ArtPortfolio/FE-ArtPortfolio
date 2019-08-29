@@ -18,7 +18,7 @@ export const Nav = styled.nav`
         text-decoration: none;
         color: #295420;
         font-size: 18px;
-        font-family: Roboto;
+        font-family: 'Roboto', sans-serif;
         cursor: pointer;
     }
 
@@ -27,7 +27,7 @@ export const Nav = styled.nav`
 //Login
 export const Form = styled.div`
     background-image: linear-gradient(to top, rgba(81,0,0, 0), rgba(81,6,102,1));
-    
+
     }
     margin: 0 auto;
     margin-top: 80px;
@@ -46,6 +46,8 @@ export const Context = styled.div`
     flex-direction: column;
     justify-content: space-between;
     font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+
     
     margin-bottom: 25px;
     .form-group {
