@@ -21,24 +21,25 @@ export default Post;
 const PostContainer = styled.div`
 
 .posts{
-    background: white;
+    background: #6A7D64;
     width: 400px;
     
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    border: 2px solid #6A7D64;
     margin: 2rem;
     text-align: center;
     border-radius: 8px;
     justify-content: center;
     align-self: flex-start;
     min-height: 620px;
-    border: 1.8px solid #aacddf;
+    
     
 }
 
 .images{
   max-height: 500px;
+  min-height: 500px;
   border-radius-top: 8px;
   object-fit: cover
   filter: contrast(80%)

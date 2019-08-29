@@ -97,13 +97,14 @@ useEffect(() => {
 export default CreatePost;
 
 const Form = styled.div`
-background-color: light purple;
+background: #F1F4F1;
 margin: 0 auto;
 margin-top: 40px;
 border: 2px solid #E3E1E1;
 border-radius: 12px;
-box-shadow: 5px 5px 8px #BFBFBF;
+box-shadow: 3px 3px 8px #BFBFBF;
 min-width: 350px;
+min-height: 360px;
 width: 30%;
 align-items: center;
 height: 300px;
