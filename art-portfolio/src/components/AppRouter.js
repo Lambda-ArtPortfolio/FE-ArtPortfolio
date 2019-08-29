@@ -23,11 +23,11 @@ const AppRouter = () => {
         <Router>
             <div className="app-router">
                 <Nav>
-                    
+                    <div className="nav-a">
                         <Link to='/'>Sign-Up</Link>
                         <Link to ='/login'>Login</Link>
                         <Link to = '/profile'>Profile</Link>
-                    
+                    </div>
                 </Nav>
             </div>
 
