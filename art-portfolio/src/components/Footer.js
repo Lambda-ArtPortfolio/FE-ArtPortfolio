@@ -1,8 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 
 
 export default function Footer() {
-    return <div className="footer">
+    return <StyledFooter className="footer">
             <p>Copyright - Art Portfolio 2019</p>
-           </div>
+           </StyledFooter>
   }
+
+  const StyledFooter = styled.div`
+  background: #C6CFC4;
+  height: 100px;
+  text-align: center;
+
+  `

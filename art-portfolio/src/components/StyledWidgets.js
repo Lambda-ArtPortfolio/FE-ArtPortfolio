@@ -40,6 +40,7 @@ export const Form = styled.div`
     height: 360px;
     display: flex;
     justify-content: center;
+    margin-bottom: 100px;
 `;
 
 export const Context = styled.div`

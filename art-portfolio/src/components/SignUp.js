@@ -11,15 +11,10 @@ import { Context, Header, LoginBtn } from './StyledWidgets';
 // }
 let formStyle =
   {marginLeft: '33%'}
-<<<<<<< HEAD
   const margin33Style =
   {marginLeft: '33%', color: 'white'}
   const margin33BStyle =
 {marginLeft: '33%', color: 'black'}
-=======
-const margin33Style =
-{marginLeft: '33%', color: 'white'}
->>>>>>> 390c060b3bf20bce97d9eb1343078d0f691c3926
 const marginWStyle =
 {marginLeft: '40%', width: '20%'}
 const margin1Style =
@@ -40,7 +35,8 @@ formStyle = {
     alignItems: 'center',
     height: '360px',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: '100px'
 }
 
 function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, status }) {
@@ -51,7 +47,8 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
       setArtist(status);
     }
   }, [status,setArtist]);
-      function signOut () {
+
+  function signOut () {
         localStorage.setItem('token','')
         localStorage.setItem('username','')
         setArtist('')
@@ -66,7 +63,7 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
                     <div style={{color: 'white'}}>We'll Do The Rest</div >
                     </Header>
 
-      <button style={marginWStyle} onClick={signOut}>Sign Out</button>
+      <LoginBtn style={marginWStyle} onClick={signOut}>Sign Out</LoginBtn>
     <Form>
 <div style={margin33Style}>Name
         {touched.name && errors.name && <p style={{color: 'red'}}>{errors.name}</p>}
