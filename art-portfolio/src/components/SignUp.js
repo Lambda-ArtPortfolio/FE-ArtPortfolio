@@ -82,6 +82,8 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
   );
 }
 
+
+
 const SignUp = withFormik({
   
   mapPropsToValues({ name, username, password }) {
@@ -103,7 +105,7 @@ const SignUp = withFormik({
       .required("* Password is required")
   }),
 
-  handleSubmit(values, { resetForm, setErrors, setSubmitting, setStatus }) {
+  handleSubmit(values, { resetForm, setErrors, setSubmitting, setStatus, props }) {
     if (values.username === "alreadytaken@atb.dev") {
       setErrors({ username: "* Username is already taken" });
     } else {
@@ -119,8 +121,10 @@ const SignUp = withFormik({
  .then(res => {
     console.log('get res',res)
     console.log('get res.data',res.data)
+    console.log('history',props.history)
     // setStatus(res.data);
       setSubmitting(false);
+      props.history.push('/login');
   })
   .catch(err => {
      console.log('get',err); // There was an error creating the data and logs to console
