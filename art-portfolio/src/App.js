@@ -1,9 +1,10 @@
 
 import './App.css';
-import React, { useState, useContext} from 'react';
+import React, { useState } from 'react';
 import {ArtistContext} from './contexts/ArtistContext.js'
 import AppRouter from './components/AppRouter';
 
+//* I just cleaned up the code, no major changes - Alexis */
 
 function App() {
   
@@ -12,17 +13,13 @@ function App() {
 
 	return (
 		<div className="App">
-	<ArtistContext.Provider value={{ artist, setArtist }}>
-			
-
-      <main>
-   
- <AppRouter />
-    
-    </main>
-    
-	</ArtistContext.Provider>
-	</div>
+      <ArtistContext.Provider value={{ artist, setArtist }}>
+        <main>
+          <AppRouter />
+        </main>
+      
+      </ArtistContext.Provider>
+	  </div>
 	);
 }
 

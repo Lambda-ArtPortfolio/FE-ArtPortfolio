@@ -9,12 +9,13 @@ import { Form, Context, Header, LoginBtn } from './StyledWidgets';
 
 
 
-const Login = () => {
+const Login = (props) => {
     const [user, setUser] = useState({username: '', password: ''});
     const [state, dispatch] = useReducer(reducer, initialState);
 
     const handleChanges = e => {
         setUser({...user, [e.target.name]: e.target.value});
+        
     };
 
     const login = e => {
@@ -28,12 +29,14 @@ const Login = () => {
                 localStorage.setItem('token', res.data.payload);
 
                 dispatch({ type: 'LOGIN', payload: res.data});
+                props.history.push('/profile');
             })
             //handle error
             .catch(err => console.log('Error, please try again', err.response));
 
-            setUser('');
+            setUser({username: '', password: ''});
     };
+    
 
     console.log(state);
 

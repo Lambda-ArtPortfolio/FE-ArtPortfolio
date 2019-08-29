@@ -6,19 +6,37 @@ export const Nav = styled.nav`
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    border: 1px solid lightgrey;
+    height: 100px;
+    width: 100%;
+    align-items: center;
+    box-shadow: 5px 5px 8px #BFBFBF;
+
+    a {
+        
+        margin-left: 70px;
+        text-decoration: none;
+        color: #295420;
+        font-size: 18px;
+        font-family: Roboto;
+        cursor: pointer;
+    }
+
 `;
 
 //Login
 export const Form = styled.div`
-    background-color: #510666;
+    background-image: linear-gradient(to top, rgba(81,0,0, 0), rgba(81,6,102,1));
+    
+    }
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 80px;
     border: 2px solid #E3E1E1;
     border-radius: 12px;
     box-shadow: 5px 5px 8px #BFBFBF;
     width: 30%;
     align-items: center;
-    height: 300px;
+    height: 360px;
     display: flex;
     justify-content: center;
 `;
@@ -59,4 +77,5 @@ export const LoginBtn = styled.button`
     margin: 0 auto;
     margin-top: 5px;
     margin-bottom: 20px;
+    cursor: pointer;
 `;

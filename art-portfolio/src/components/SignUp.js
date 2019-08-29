@@ -21,7 +21,7 @@ const margin1Style =
 
 formStyle = {
   backgroundImage:
-  `linear-gradient(to bottom, rgba(255,255,0,0.5), rgba(0,0,255,0.5)),
+  `linear-gradient(to bottom, #F0F0F0, rgba(0,0,255,0.5)),
   url('https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/68680488_10158110637571323_2872412301510574080_o.jpg?_nc_cat=109&_nc_oc=AQlKM8gAcXdVTYfaO7VQPB4jj5psofWNDVsWZaqS7ga73viH3q6JdsX6N1kS7HkMp2DFgwqXw5RJQt223U9wGWT7&_nc_ht=scontent-iad3-1.xx&oh=ef3c44753a30d5188ee82e1b1036112e&oe=5E022BA6')`,
     backgroundColor: '#DCDCDC',
     margin: '0 auto',
@@ -94,19 +94,19 @@ const SignUp = withFormik({
   },
   validationSchema: Yup.object().shape({
     name: Yup.string()
-      .min(2,"name not valid")
-      .required("name is required"),
+      .min(2,"* Name is not valid")
+      .required("* Name is required"),
       username: Yup.string()
-      .min(2,"username not valid")
-      .required("username is required"),
+      .min(2,"* Username is not valid")
+      .required("* Username is required"),
     password: Yup.string()
-      .min(2, "Password must be 2 characters or longer")
-      .required("Password is required")
+      .min(2, "* Password must be 2 characters or longer")
+      .required("* Password is required")
   }),
 
   handleSubmit(values, { resetForm, setErrors, setSubmitting, setStatus }) {
     if (values.username === "alreadytaken@atb.dev") {
-      setErrors({ username: "That username is already taken" });
+      setErrors({ username: "* Username is already taken" });
     } else {
     axios
       .post("https://art-portfolio-bw.herokuapp.com/auth/register", values)
@@ -118,21 +118,21 @@ const SignUp = withFormik({
         axios
  .get("https://art-portfolio-bw.herokuapp.com/")
  .then(res => {
-  console.log('get res',res)
-  console.log('get res.data',res.data)
-// setStatus(res.data);
-     setSubmitting(false);
-   })
-   .catch(err => {
+    console.log('get res',res)
+    console.log('get res.data',res.data)
+    // setStatus(res.data);
+      setSubmitting(false);
+  })
+  .catch(err => {
      console.log('get',err); // There was an error creating the data and logs to console
      setSubmitting(false);
-   });
+  });
+    setSubmitting(false);
+    })
+    .catch('post',err => {
+        console.log(err); // There was an error creating the data and logs to console
           setSubmitting(false);
-        })
-        .catch('post',err => {
-          console.log(err); // There was an error creating the data and logs to console
-          setSubmitting(false);
-        });
+    });
     }
   }
 })(SignUpForm);
