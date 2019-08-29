@@ -1,5 +1,3 @@
-import Styled from 'styled-components'
-
 //* Alexis Panyathong's Section *//
 
 import React from 'react';
@@ -23,15 +21,15 @@ const AppRouter = () => {
   
     return (
         <Router>
-            <StyledRouter className="app-router">
+            <div className="app-router">
                 <Nav>
                     <div className="nav-a">
-                        <Link to='/'>Sign-Up</Link>
+                        <Link to='/'>Sign Up</Link>
                         <Link to ='/login'>Login</Link>
                         <Link to = '/profile'>Profile</Link>
                     </div>
                 </Nav>
-            </StyledRouter>
+            </div>
 
             <Switch>
                 <Route exact path= '/' component={SignUp} />
@@ -47,6 +45,3 @@ const AppRouter = () => {
 
 export default AppRouter;
 
-const StyledRouter = Styled.div`
-background: #C6CFC4;
-`

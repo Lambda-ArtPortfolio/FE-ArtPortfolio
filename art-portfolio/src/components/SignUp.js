@@ -22,7 +22,7 @@ const margin1Style =
 
 formStyle = {
   backgroundImage:
-  `linear-gradient(to top, rgba(81,0,0, 0), rgba(81,6,102,1)),
+  `linear-gradient(to top, rgba(81,0,0,0), rgba(81,6,102,1)),
   url('https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/68680488_10158110637571323_2872412301510574080_o.jpg?_nc_cat=109&_nc_oc=AQlKM8gAcXdVTYfaO7VQPB4jj5psofWNDVsWZaqS7ga73viH3q6JdsX6N1kS7HkMp2DFgwqXw5RJQt223U9wGWT7&_nc_ht=scontent-iad3-1.xx&oh=ef3c44753a30d5188ee82e1b1036112e&oe=5E022BA6')`,
     backgroundColor: '#DCDCDC',
     margin: '0 auto',
@@ -55,15 +55,13 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
       }
   return (
 <div style={formStyle}>
-<div>
-      
+<div>      
                       <Context>
                     <Header>
                     <div style={{color: 'white', fontSize: '32px'}}>Display Your Art</div >
                     <div style={{color: 'white'}}>We'll Do The Rest</div >
                     </Header>
-
-      <LoginBtn style={marginWStyle} onClick={signOut}>Sign Out</LoginBtn>
+      {/* <LoginBtn onClick={signOut}>Sign Out</LoginBtn> */}
     <Form>
 <div style={margin33Style}>Name
         {touched.name && errors.name && <p style={{color: 'red'}}>{errors.name}</p>}
@@ -87,10 +85,7 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
   );
 }
 
-
-
-const SignUp = withFormik({
-  
+const SignUp = withFormik({  
   mapPropsToValues({ name, username, password }) {
     return {
       name: name || "",
@@ -109,7 +104,6 @@ const SignUp = withFormik({
       .min(2, "* Password must be 2 characters or longer")
       .required("* Password is required")
   }),
-
   handleSubmit(values, { resetForm, setErrors, setSubmitting, setStatus, props }) {
     if (values.username === "alreadytaken@atb.dev") {
       setErrors({ username: "* Username is already taken" });
