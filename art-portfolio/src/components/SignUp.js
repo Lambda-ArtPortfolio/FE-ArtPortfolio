@@ -33,7 +33,8 @@ formStyle = {
     alignItems: 'center',
     height: '360px',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: '100px'
 }
 
 function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, status }) {
