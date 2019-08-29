@@ -13,4 +13,7 @@
             rgba(0,0,0,0) calc(50% + 0.8px),
             rgba(0,0,0,0) 250%);
 }
-
+.fieldbox{
+    margin-left: 15%;
+    margin-right:15%;
+}

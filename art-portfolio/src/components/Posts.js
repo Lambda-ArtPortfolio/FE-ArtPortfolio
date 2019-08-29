@@ -8,9 +8,9 @@ const Post = ({deletePost, editPost, ...props}) => {
   <PostContainer className = "container">
   <div className = "posts">
     <img className = "images" src = {props.item.image} />
-    <p>Description: {props.item.description}</p>
-    <button className="del-btn" onClick={e => deletePost(e, props.item.id)}> X </button>
-    <button className= "edit-btn" onClick={() => editPost(props.item)}>EDIT ME</button>
+    <p>Details: {props.item.description}</p>
+    <button className="del-btn" onClick={e => deletePost(e, props.item.id)}> x </button>
+    <button className= "edit-btn" onClick={() => editPost(props.item)}>Edit</button>
   </div>  
 </PostContainer>
   
