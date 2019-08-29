@@ -1,58 +1,83 @@
 //* Alexis Panyathong's Section *//
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
-class Login extends Component {
-    constructor() {
-        super();
+import React, { useState, useReducer } from 'react';
+import { reducer, initialState } from '../reducers/LoginReducer';
 
-        this.state = {
-            email: '',
-            password: ''
-        };
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { Form, Context, Header, LoginBtn } from './StyledWidgets';
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
 
-    handleChange(e) {
-        let target = e.target;
-        let value = target.type === 'checkbox' ? target.checked : target.value;
-        let name = target.name;
 
-        this.setState({
-          [name]: value
-        });
-    }
 
-    handleSubmit(e) {
+const Login = () => {
+    const [user, setUser] = useState({username: '', password: ''});
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    const handleChanges = e => {
+        setUser({...user, [e.target.name]: e.target.value});
+    };
+
+    const login = e => {
         e.preventDefault();
 
-        console.log('The form was submitted with the following data:');
-        console.log(this.state);
-    }
+        axiosWithAuth().post('https://art-portfolio-bw.herokuapp.com/auth/login', user)
+            //handle success
+            .then(res => {
+                console.log(res);
 
-    render() {
-        return (
-        <div className="FormCenter">
-            <form onSubmit={this.handleSubmit} className="FormFields" onSubmit={this.handleSubmit}>
-            <div className="FormField">
-                <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
-                <input type="email" id="email" className="FormField__Input" placeholder="Enter your email" name="email" value={this.state.email} onChange={this.handleChange} />
-              </div>
+                localStorage.setItem('token', res.data.payload);
 
-              <div className="FormField">
-                <label className="FormField__Label" htmlFor="password">Password</label>
-                <input type="password" id="password" className="FormField__Input" placeholder="Enter your password" name="password" value={this.state.password} onChange={this.handleChange} />
-              </div>
+                dispatch({ type: 'LOGIN', payload: res.data});
+            })
+            //handle error
+            .catch(err => console.log('Error, please try again', err.response));
 
-              <div className="FormField">
-                  <button className="FormField__Button mr-20">Sign In</button> <Link to="/" className="FormField__Link">Create an account</Link>
-              </div>
-            </form>
-          </div>
-        );
-    }
+            setUser('');
+    };
+
+    console.log(state);
+
+   
+
+    return (
+        <>
+            <Form>
+                <Context>
+                    <Header>
+                    <h2>Welcome Back</h2>
+                    </Header>
+
+                    <div className="form-group">
+                        <label>Username: </label>
+                        <input 
+                            className="form-group"
+                            type="username"
+                            name="username"
+                            placeholder="username"
+                            value={user.username} required
+                            onChange={handleChanges}
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Password: </label>
+                        <input 
+                            className="form-group"
+                            type="password"
+                            name="password"
+                            placeholder="password"
+                            value={user.password} required
+                            onChange={handleChanges}
+                        />
+                    </div>
+
+                    <LoginBtn onClick={login} type="submit">Submit</LoginBtn>
+                </Context> 
+            </Form>
+        </>
+    )
 }
+
+
 
 export default Login;

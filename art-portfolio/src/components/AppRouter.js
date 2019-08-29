@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Login from './Login';
 import ProfilePage from './ProfilePage';
 import SignUp from './SignUp';
+import NavTab from './NavTab';
 
 
 //Styled Components
@@ -16,16 +17,7 @@ const AppRouter = () => {
   
     return (
         <Router>
-            <div className="app-router">
-                <ul>
-                    <li>
-                        <Link to='/login'>Login</Link>
-                        <Link to ='/profile'>Profile</Link>
-                        <Link to = '/signUp'>Sign-Up</Link>
-                    </li>
-                </ul>
-            </div>
-
+            <NavTab />
             <Switch>
                 <Route path='/login' component={Login} />
                 <Route path='/profile' component={ProfilePage} />
