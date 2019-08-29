@@ -23,7 +23,6 @@ const PostContainer = styled.div`
 .posts{
     background: #6A7D64;
     width: 400px;
-    
     display: flex;
     flex-direction: column;
     border: 2px solid #6A7D64;
