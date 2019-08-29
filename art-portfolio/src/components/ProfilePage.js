@@ -39,13 +39,13 @@ const ProfilePage = ({...props}) => {
     const editIndex = profilePage.indexOf(postToEdit);
     const id = profilePage[editIndex].id
   
-    axiosWithAuth({
-      data:{
-        image: post.image,
-        description: post.description
-      }
-    })
-      .put(`/art/${id}`)
+    axiosWithAuth(
+      // data:{
+      //   image: post.image,
+      //   description: post.description
+      // }
+    )
+      .put(`/art/${id}`,post)
       .then((res) => {
         setProfilePage(profilePage.map((submission, index) => (index === editIndex ? res.data : submission)));
       })
