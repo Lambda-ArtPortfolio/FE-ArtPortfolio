@@ -4,40 +4,41 @@ import CreatePost from "./CreatePost";
 import Posts from './Posts'
 import styled from 'styled-components';
 
-const ProfilePage = ({updatedPost, post, postEdit, ...props}) => {
+const ProfilePage = ({...props}) => {
   const [profilePage, setProfilePage] = useState([]);
+  console.log(profilePage, "profilePAGE")
   
-
+  
   useEffect(() => {
-    // console.log(postToEdit);
+    
     axiosWithAuth()
     .get("/art")
     .then(res => {
-        setProfilePage(res.data.sort((a,b) => b.id - a.id));
-        console.log("res",res)
-      })
-      .catch(err => {
-        console.log("err: ", err);
-      });
+      setProfilePage(res.data.sort((a,b) => b.id - a.id));
+      console.log("res",res)
+    })
+    .catch(err => {
+      console.log("err: ", err);
+    });
   }, []);
-
+  
   const deletePost = (e, id) => {
     e.stopPropagation();
     axiosWithAuth()
-      .delete(`/art/${id}`)
-      .then(res => {
-        setProfilePage(profilePage.filter(post => post.id !== id ));
-      })
-      .catch(err => {
-        console.log("Err: ", err);
-      });
+    .delete(`/art/${id}`)
+    .then(res => {
+      setProfilePage(profilePage.filter(post => post.id !== id ));
+    })
+    .catch(err => {
+      console.log("Err: ", err);
+    });
   };
-
-  const[postToEdit, setPostToEdit] = useState(null)
+  
+  const [postToEdit, setPostToEdit] = useState(null)
   const editPost =  post  => {
-  const editIndex = profilePage.indexOf(postToEdit);
-  const id = profilePage[editIndex].id
-  debugger 
+    const editIndex = profilePage.indexOf(postToEdit);
+    const id = profilePage[editIndex].id
+  
     axiosWithAuth({
       data:{
         image: post.image,
@@ -45,8 +46,8 @@ const ProfilePage = ({updatedPost, post, postEdit, ...props}) => {
       }
     })
       .put(`/art/${id}`)
-      .then(res => {
-        setProfilePage(profilePage.map((info, index) => (index === editIndex ? res.data : info)));
+      .then((res) => {
+        setProfilePage(profilePage.map((submission, index) => (index === editIndex ? res.data : submission)));
       })
       .catch(err => {
         console.log("Err: ", err);
@@ -59,6 +60,7 @@ const ProfilePage = ({updatedPost, post, postEdit, ...props}) => {
   return (
   
    <div>
+     
       <CreatePost {...props}
       profilePage={profilePage}
       setProfilePage={setProfilePage}
@@ -69,11 +71,11 @@ const ProfilePage = ({updatedPost, post, postEdit, ...props}) => {
       />
       
      <PostList>
-       {profilePage.map((item, index) => {
+       {profilePage.map((post, index) => {
          return(
            <Posts
            key={index}
-           item = {item}
+           post = {post}
            setPostToEdit={setPostToEdit}
            deletePost = {deletePost}
            />

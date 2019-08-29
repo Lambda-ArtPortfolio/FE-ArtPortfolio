@@ -6,12 +6,12 @@ const Post = ({deletePost, setPostToEdit, post, ...props}) => {
   return (
   <PostContainer className = "container">
   <div className = "posts">
-    <img className = "images" src = {props.item.image} />
-    <p>Description: {props.item.description}</p>
-    <button className="del-btn" onClick={e => deletePost(e, props.item.id)}> X </button>
-    <button className= "edit-btn" onClick={e => setPostToEdit(e, post)}>EDIT ME</button>
+    <img className = "images" src = {post.image} />
+    <p>Description: {post.description}</p>
+    <button className="del-btn" onClick={e => deletePost(e, post.id)}> X </button>
+    <button className= "edit-btn" onClick={() => setPostToEdit(post)}>EDIT ME</button>
   </div>  
-  {console.log("postToEdit",setPostToEdit)}
+  
 </PostContainer>
   );
 };
@@ -23,6 +23,7 @@ const PostContainer = styled.div`
 .posts{
     background: white;
     width: 400px;
+    
     display: flex;
     flex-direction: column;
     border: 1px solid black;
@@ -31,7 +32,7 @@ const PostContainer = styled.div`
     border-radius: 8px;
     justify-content: center;
     align-self: flex-start;
-    min-height: 400px;
+    min-height: 620px;
     border: 1.8px solid #aacddf;
     
 }
@@ -40,7 +41,7 @@ const PostContainer = styled.div`
   max-height: 500px;
   border-radius-top: 8px;
   object-fit: cover
-  filter: contrast(70%)
+  filter: contrast(80%)
     
 }
 .images:hover{

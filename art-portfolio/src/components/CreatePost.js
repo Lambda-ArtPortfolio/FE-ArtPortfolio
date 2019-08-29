@@ -12,6 +12,7 @@ useEffect(() => {
     }
 
     }, [postToEdit])
+ 
 
 
     const handleChange = e => {
@@ -23,7 +24,6 @@ useEffect(() => {
     };
 
     const handleSubmit = e => {
-      debugger
     e.preventDefault();
     if (postToEdit) {
         editPost(post);
@@ -43,7 +43,7 @@ useEffect(() => {
           },
           data:{
             image: post.image,
-            description: post.description,
+            description: post.description
            }
         })
         .then((res) => {
@@ -53,19 +53,16 @@ useEffect(() => {
         })
       }
       sendPost();
-
-        
     }
-        setPost({ image: "", description: "" });
+    setPost({ image: "", description: "" });
   };
     
 
     return (
-      <div>
      <Form>
      <form onSubmit={handleSubmit}>
       <fieldset className = "fieldbox"> 
-            <legend className = "legend">{postToEdit ? "Edit a Post" : "Add a Post"}</legend> 
+            <p className = "legend">{postToEdit ? "Edit Post" : "New Post"}</p> 
             <label htmlFor="image">
              Image:{" "}
              <input className = "image"
@@ -78,11 +75,11 @@ useEffect(() => {
             </label>
   
             <label htmlFor="description">
-             Submit a Post:{" "}
-             <textarea cols={30} rows={10}
+             Add a description:
+             <textarea cols={75} rows={10}
                 type="text"
                 name="description"
-                placeholder='Enter post here'
+                placeholder={postToEdit ? post.description :'Describe your work'}
                 value={post.description}
                 onChange={handleChange}
              />
@@ -91,7 +88,7 @@ useEffect(() => {
        </fieldset>
       </form> 
      </Form>
-     </div>
+     
 
     );
 
@@ -106,20 +103,37 @@ margin-top: 40px;
 border: 2px solid #E3E1E1;
 border-radius: 12px;
 box-shadow: 5px 5px 8px #BFBFBF;
+min-width: 350px;
 width: 30%;
 align-items: center;
 height: 300px;
 display: flex;
 justify-content: center;
 
-.fieldbox{
+textarea{
+  display: flex;
+  width: 97%;
+}
+
+.form{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   font-size: 16px;
 }
 
-.legend{
+input{
+  display: flex;
+  flex-direction: column;
+}
+
+.fieldbox{
+  display: flex;
+  flex-direction: column;
   border: none;
+}
+
+.legend{
+  text-align: center;
 }
 `
