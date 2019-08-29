@@ -104,6 +104,7 @@ margin-top: 40px;
 border: 2px solid #E3E1E1;
 border-radius: 12px;
 box-shadow: 5px 5px 8px #BFBFBF;
+min-width: 350px;
 width: 30%;
 align-items: center;
 height: 300px;
