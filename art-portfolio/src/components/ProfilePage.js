@@ -39,13 +39,13 @@ const ProfilePage = ({...props}) => {
     const editIndex = profilePage.indexOf(postToEdit);
     const id = profilePage[editIndex].id
   
-    axiosWithAuth({
-      data:{
-        image: post.image,
-        description: post.description
-      }
-    })
-      .put(`/art/${id}`)
+    axiosWithAuth(
+      // data:{
+      //   image: post.image,
+      //   description: post.description
+      // }
+    )
+      .put(`/art/${id}`,post)
       .then((res) => {
         setProfilePage(profilePage.map((submission, index) => (index === editIndex ? res.data : submission)));
       })
@@ -91,13 +91,15 @@ export default ProfilePage;
 
 const PostList = styled.div`
 display: -webkit-flex;
+  background: #F9F5F9;
 	display: flex;
 	-webkit-justify-content: center;
 	justify-content: center;
 	-webkit-flex-wrap: wrap;
 	flex-wrap: wrap;
 	margin-top: 15px;
-	padding: 1.5%;
+  padding: 1.5%;
+  
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
