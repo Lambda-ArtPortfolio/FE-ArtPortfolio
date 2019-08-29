@@ -3,7 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 
-const CreatePost = ({ list, setList, postToEdit, setPostToEdit, editPost}) => {
+const CreatePost = ({ profilePage, setProfilePage, postToEdit, setPostToEdit, editPost}) => {
 const [post, setPost] = useState({image: "", description: ""});
 
 useEffect(() => {
@@ -47,7 +47,7 @@ useEffect(() => {
            }
         })
         .then((res) => {
-          setList([ res.data, ...list])
+          setProfilePage([ res.data, ...profilePage])
         })
         .catch(err => {
         })
@@ -87,7 +87,7 @@ useEffect(() => {
                 onChange={handleChange}
              />
             </label>
-        <input onClick = {handleSubmit} className = "button" type="submit" value="Submit" />    
+        <input className = "button" type="submit" value="Submit" />    
        </fieldset>
       </form> 
      </Form>
@@ -100,7 +100,7 @@ useEffect(() => {
 export default CreatePost;
 
 const Form = styled.div`
-background-color: #510666;
+background-color: light purple;
 margin: 0 auto;
 margin-top: 40px;
 border: 2px solid #E3E1E1;

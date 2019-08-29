@@ -4,16 +4,16 @@ import CreatePost from "./CreatePost";
 import Posts from './Posts'
 import styled from 'styled-components';
 
-const ProfilePage = ({updatedPost, post, list, setList, postEdit, ...props}) => {
+const ProfilePage = ({updatedPost, post, postEdit, ...props}) => {
   const [profilePage, setProfilePage] = useState([]);
-  const [postToEdit, setPostToEdit]= useState(null);  
+  
 
   useEffect(() => {
     // console.log(postToEdit);
     axiosWithAuth()
     .get("/art")
     .then(res => {
-        setProfilePage(res.data)
+        setProfilePage(res.data.sort((a,b) => b.id - a.id));
         console.log("res",res)
       })
       .catch(err => {
@@ -33,14 +33,20 @@ const ProfilePage = ({updatedPost, post, list, setList, postEdit, ...props}) => 
       });
   };
 
-  const editPost = (e, post, id) => {
-  const editIndex = list.indexOf(postToEdit);
+  const[postToEdit, setPostToEdit] = useState(null)
+  const editPost =  post  => {
+  const editIndex = profilePage.indexOf(postToEdit);
+  const id = profilePage[editIndex].id
   debugger 
-    e.preventDefault();
-    axiosWithAuth()
+    axiosWithAuth({
+      data:{
+        image: post.image,
+        description: post.description
+      }
+    })
       .put(`/art/${id}`)
       .then(res => {
-        setProfilePage(profilePage.map((info, index) => (index === editIndex ? post : info)));
+        setProfilePage(profilePage.map((info, index) => (index === editIndex ? res.data : info)));
       })
       .catch(err => {
         console.log("Err: ", err);
