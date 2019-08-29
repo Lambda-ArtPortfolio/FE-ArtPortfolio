@@ -107,9 +107,13 @@ box-shadow: 5px 5px 8px #BFBFBF;
 width: 30%;
 align-items: center;
 height: 300px;
-
 display: flex;
 justify-content: center;
+
+textarea{
+  display: flex;
+  width: 97%;
+}
 
 .form{
   display: flex;
