@@ -11,13 +11,11 @@ import { Context, Header, LoginBtn } from './StyledWidgets';
 // }
 let formStyle =
   {marginLeft: '33%'}
-  const margin33Style =
-  {marginLeft: '33%', color: 'white'}
-  const margin33BStyle =
+const margin33Style =
+ {marginLeft: '33%', color: 'white'}
+ const margin33BStyle =
 {marginLeft: '33%', color: 'black'}
-const marginWStyle =
-{marginLeft: '40%', width: '20%'}
-const margin1Style =
+ const margin1Style =
 {marginLeft: '1%', fontStyle: 'oblique', color: 'white'}
 
 formStyle = {
@@ -75,7 +73,7 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
         {touched.password && errors.password && <p style={{color: 'red'}}>{errors.password}</p>}
         <Field type="password" name="password" placeholder="Password" autoComplete="current-password" />
       </div>
-      <LoginBtn style={margin33BStyle} type='submit' disabled={isSubmitting}>Sign UP</LoginBtn>
+      <LoginBtn style={margin33BStyle} type='submit' disabled={isSubmitting}>Sign Up</LoginBtn>
 
     </Form>
     <div style={margin1Style}><div>Glad to have you</div><div>{artist ? artist : ''}</div></div>

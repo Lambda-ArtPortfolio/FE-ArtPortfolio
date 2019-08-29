@@ -21,6 +21,11 @@ export const Nav = styled.nav`
         font-size: 18px;
         font-family: 'Roboto', sans-serif;
         cursor: pointer;
+        @media (max-width: 500px) {
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+        }
     }
 
 `;
@@ -42,7 +47,10 @@ export const Form = styled.div`
     height: 360px;
     display: flex;
     justify-content: center;
-    margin-bottom: 100px;
+    @media (max-width: 500px) {
+        
+        
+    }
 `;
 
 export const Context = styled.div`
@@ -51,7 +59,9 @@ export const Context = styled.div`
     justify-content: space-between;
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
-
+    @media (max-width: 500px) {
+        
+    }
     
     margin-bottom: 25px;
     .form-group {
@@ -72,6 +82,7 @@ export const Header = styled.h2`
     font-size: 18px;
     color: #FFFFFF;
     text-align: center;
+    
 `;
 
 export const LoginBtn = styled.button`
