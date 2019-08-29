@@ -9,7 +9,7 @@ import { Form, Context, Header, LoginBtn } from './StyledWidgets';
 
 
 
-const Login = () => {
+const Login = (props) => {
     const [user, setUser] = useState({username: '', password: ''});
     const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -29,15 +29,14 @@ const Login = () => {
                 localStorage.setItem('token', res.data.payload);
 
                 dispatch({ type: 'LOGIN', payload: res.data});
+                props.history.push('/profile');
             })
             //handle error
             .catch(err => console.log('Error, please try again', err.response));
-                e.preventDefault();
-
 
             setUser({username: '', password: ''});
-            alert('* Username or password is invalid, please try again')
     };
+    
 
     console.log(state);
 

@@ -4,16 +4,16 @@ import CreatePost from "./CreatePost";
 import Posts from './Posts'
 import styled from 'styled-components';
 
-const ProfilePage = ({updatedPost, list, setList, postEdit, ...props}) => {
+const ProfilePage = ({updatedPost, post, postEdit, ...props}) => {
   const [profilePage, setProfilePage] = useState([]);
-
+  
 
   useEffect(() => {
-  
+    // console.log(postToEdit);
     axiosWithAuth()
     .get("/art")
     .then(res => {
-        setProfilePage(res.data)
+        setProfilePage(res.data.sort((a,b) => b.id - a.id));
         console.log("res",res)
       })
       .catch(err => {
@@ -32,47 +32,51 @@ const ProfilePage = ({updatedPost, list, setList, postEdit, ...props}) => {
         console.log("Err: ", err);
       });
   };
-  const [editedPost, setEditedPost] = useState(null)
-  const editPost = (post) => {
-  const editIndex = profilePage.indexOf(post);
 
+  const[postToEdit, setPostToEdit] = useState(null)
+  const editPost =  post  => {
+  const editIndex = profilePage.indexOf(postToEdit);
   const id = profilePage[editIndex].id
-   // e.preventDefault();
+  debugger 
     axiosWithAuth({
-      data: {
-        description: post.description,
-        image: post.image
+      data:{
+        image: post.image,
+        description: post.description
       }
-      })
+    })
       .put(`/art/${id}`)
       .then(res => {
-        setProfilePage(
-          profilePage.map((post,index) => (index === editIndex ? res.data.art : post)),
-        );
+        setProfilePage(profilePage.map((info, index) => (index === editIndex ? res.data : info)));
       })
       .catch(err => {
-        console.log("Error: ", err);
+        console.log("Err: ", err);
       });
   };
+
+
+
 
   return (
   
    <div>
       <CreatePost {...props}
-      list={list}
-      setList={setList}
+      profilePage={profilePage}
+      setProfilePage={setProfilePage}
+      postToEdit={postToEdit}
+      setPostToEdit={setPostToEdit}
       editPost={editPost}
-      setEditedPost={setEditedPost}
-      postEdit={postEdit}
+      
       />
       
      <PostList>
-       {profilePage.map(item => {
+       {profilePage.map((item, index) => {
          return(
            <Posts
+           key={index}
            item = {item}
+           setPostToEdit={setPostToEdit}
            deletePost = {deletePost}
-           editPost = {editPost} />
+           />
          )
          })}
       </PostList>

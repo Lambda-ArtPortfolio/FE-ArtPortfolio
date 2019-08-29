@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 
 
-const CreatePost = ({ list, setList, setEditedPost, editedPost, postEdit }) => {
+const CreatePost = ({ profilePage, setProfilePage, postToEdit, setPostToEdit, editPost}) => {
 const [post, setPost] = useState({image: "", description: ""});
 
 useEffect(() => {
-
-    if (editedPost) {
-        setPost(editedPost)
+    if (postToEdit) {
+        setPost(postToEdit)
     }
 
-    }, [editedPost])
+    }, [postToEdit])
 
 
     const handleChange = e => {
@@ -23,16 +23,18 @@ useEffect(() => {
     };
 
     const handleSubmit = e => {
+      debugger
     e.preventDefault();
-    if (postEdit) {
-        postEdit(post);
-        setEditedPost(null);
+    if (postToEdit) {
+        editPost(post);
+        setPostToEdit(null);
     } else if (
         post.image !== "" && 
         post.description !== "" 
     ) {
 
       const sendPost = () => {
+        
         axios({
           url:'https://art-portfolio-bw.herokuapp.com/art',
           method: 'post',
@@ -45,7 +47,7 @@ useEffect(() => {
            }
         })
         .then((res) => {
-          setList([ res.data.art, ...list])
+          setProfilePage([ res.data, ...profilePage])
         })
         .catch(err => {
         })
@@ -59,16 +61,18 @@ useEffect(() => {
     
 
     return (
+      <div>
+     <Form>
      <form onSubmit={handleSubmit}>
       <fieldset className = "fieldbox"> 
-            <legend className = "legend">{editedPost ? "Edit a Post" : "Add a Post"}</legend> 
+            <legend className = "legend">{postToEdit ? "Edit a Post" : "Add a Post"}</legend> 
             <label htmlFor="image">
              Image:{" "}
              <input className = "image"
                 type="text"
                 name="image"
                 placeholder="Upload and Image"
-                value={post ? post.image : "?"}
+                value={post.image}
                 onChange={handleChange}
               />
             </label>
@@ -77,161 +81,45 @@ useEffect(() => {
              Submit a Post:{" "}
              <textarea cols={30} rows={10}
                 type="text"
-                name="message"
-                placeholder="Enter Post Here"
+                name="description"
+                placeholder='Enter post here'
                 value={post.description}
                 onChange={handleChange}
              />
             </label>
         <input className = "button" type="submit" value="Submit" />    
-      </fieldset>
-     </form>
-     
+       </fieldset>
+      </form> 
+     </Form>
+     </div>
 
     );
 
 };
 
-// const initialPost = {
-//   description: "",
-//   image: {file: ''}
-// }
+export default CreatePost;
 
-// const CreatePost = ({ posts, updatePosts }) => {
-//   console.log(posts);
-//   const [editing, setEditing] = useState(false);
-//   const [postToEdit, setPostToEdit] = useState(initialPost);
-//   const [addPost, setAddPost] = useState(initialPost);
+const Form = styled.div`
+background-color: light purple;
+margin: 0 auto;
+margin-top: 40px;
+border: 2px solid #E3E1E1;
+border-radius: 12px;
+box-shadow: 5px 5px 8px #BFBFBF;
+width: 30%;
+align-items: center;
+height: 300px;
+display: flex;
+justify-content: center;
 
-//   const editPost = post => {
-//     setEditing(true);
-//     setPostToEdit(post);
-//   };
+.fieldbox{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 16px;
+}
 
-//   const cancelAdd = e => {
-//     e.preventDefault();
-//     setAddPost(initialPost);
-//   };
-
-//    const addedPost = e => {
-//     e.preventDefault();
-
-//      if (addPost.description !== "" && addPost.image !== {}) {
-//       axiosWithAuth()
-//         .post("/art", addPost)
-//         .then(res => {
-//           updatePosts(res.data);
-//           setAddPost(initialPost);
-//         })
-//         .catch(err => {
-//           console.log("Error: ", err);
-//         });
-//     }
-//   };
-
-//   const saveEdit = e => {
-//     e.preventDefault();
-//     axiosWithAuth()
-//       .put(`/art/${postToEdit.id}`, postToEdit)
-//       .then(res => {
-//         updatePosts(
-//           posts.map(post => (post.id === postToEdit.id ? res.data : post)),
-//         );
-//         setEditing(false);
-//       })
-//       .catch(err => {
-//         console.log("Error: ", err);
-//       });
-//   };
-
-//   const deletePost = (e) => {
-//     e.stopPropagation();
-//     axiosWithAuth()
-//       .delete(`/art`)
-//       .then(res => {
-//         updatePosts(posts.filter(post => post.id !== res.data));
-//       })
-//       .catch(err => {
-//         console.log("Err: ", err);
-//       });
-//   };
-//   return (
-//     <div className="Posts">
-//       <p>Posts</p>
-//       <ul>
-//         {posts.map(data => (
-//           <li key={data.post} onClick={() => editPost(data)}>
-//             <span>
-//               <span className="delete" onClick={e => deletePost(e)}>
-//                 x
-//               </span>{" "}
-//               {data.post}
-//             </span>
-//             <div className="post-box"/>
-//           </li>
-//         ))}
-//       </ul>
-//       {editing ? (
-//         <form className ="edit-post" onSubmit={saveEdit}>
-//           <legend className = "edit-button">edit post</legend>
-//           <label>
-//             description:
-//             <input
-//               onChange={e =>
-//                 setPostToEdit({ ...postToEdit, post: e.target.value })
-//               }
-//               value={postToEdit.post}
-//             />
-//           </label>
-//           <label>
-//             image:
-//             <input
-//               onChange={e =>
-//                 setPostToEdit({
-//                   ...postToEdit,
-//                   image: {file: ''}
-//                 })
-//               }
-//               value={postToEdit.image.file}
-//             />
-//           </label>
-//           <div className="button-row">
-//             <button type="submit">save</button>
-//             <button onClick={() => setEditing(false)}>cancel</button>
-//           </div>
-//         </form>
-//       ) : (
-//     <form className = "added-post" onSubmit={addedPost}>
-//     <legend>add post</legend>
-//     <label>
-//       description
-//       <input
-//         onChange={e =>
-//           setAddPost({ ...addPost, post: e.target.value })
-//         }
-//         value={addPost.post}
-//       />
-//     </label>
-//     <label>
-//       image:
-//       <input
-//         onChange={e =>
-//           setAddPost({
-//             ...addPost,
-//             image: { file: e.target.value },
-//           })
-//         }
-//         value={addPost.image.file}
-//       />
-//     </label>
-//     <div className="button-row">
-//       <button type="submit">add</button>
-//       <button onClick={cancelAdd}>cancel</button>
-//     </div>
-//   </form>
-//       )}
-//     </div>
-//   )
-// };
-
-export default CreatePost
+.legend{
+  border: none;
+}
+`
