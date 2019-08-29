@@ -11,26 +11,29 @@ import { Context, Header, LoginBtn } from './StyledWidgets';
 // }
 let formStyle =
   {marginLeft: '33%'}
-const margin33Style =
-{marginLeft: '33%'}
+  const margin33Style =
+  {marginLeft: '33%', color: 'white'}
+  const margin33BStyle =
+{marginLeft: '33%', color: 'black'}
 const marginWStyle =
 {marginLeft: '40%', width: '20%'}
 const margin1Style =
-{marginLeft: '1%', fontStyle: 'oblique'}
+{marginLeft: '1%', fontStyle: 'oblique', color: 'white'}
 
 formStyle = {
   backgroundImage:
-  `linear-gradient(to bottom, #F0F0F0, rgba(0,0,255,0.5)),
+  `linear-gradient(to top, rgba(81,0,0, 0), rgba(81,6,102,1)),
   url('https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/68680488_10158110637571323_2872412301510574080_o.jpg?_nc_cat=109&_nc_oc=AQlKM8gAcXdVTYfaO7VQPB4jj5psofWNDVsWZaqS7ga73viH3q6JdsX6N1kS7HkMp2DFgwqXw5RJQt223U9wGWT7&_nc_ht=scontent-iad3-1.xx&oh=ef3c44753a30d5188ee82e1b1036112e&oe=5E022BA6')`,
     backgroundColor: '#DCDCDC',
     margin: '0 auto',
-    marginTop: '30px',
+    marginTop: '80px',
     border: '2px solid #E3E1E1',
     borderRadius: '12px',
     boxShadow: '5px 5px 8px #BFBFBF',
-    width: '50%',
+    width: '30%',
+    minWidth: '300px',
     alignItems: 'center',
-    height: '500px',
+    height: '360px',
     display: 'flex',
     justifyContent: 'center'
 }
@@ -54,8 +57,8 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
       
                       <Context>
                     <Header>
-                    <div style={{color: 'black', fontSize: '32px'}}>Display Your Art</div >
-                    <div style={{color: 'black'}}>We'll Do The Rest</div >
+                    <div style={{color: 'white', fontSize: '32px'}}>Display Your Art</div >
+                    <div style={{color: 'white'}}>We'll Do The Rest</div >
                     </Header>
 
       <button style={marginWStyle} onClick={signOut}>Sign Out</button>
@@ -72,7 +75,7 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
         {touched.password && errors.password && <p style={{color: 'red'}}>{errors.password}</p>}
         <Field type="password" name="password" placeholder="Password" autoComplete="current-password" />
       </div>
-      <LoginBtn style={margin33Style} type='submit' disabled={isSubmitting}>Sign UP</LoginBtn>
+      <LoginBtn style={margin33BStyle} type='submit' disabled={isSubmitting}>Sign UP</LoginBtn>
 
     </Form>
     <div style={margin1Style}><div>Glad to have you</div><div>{artist ? artist : ''}</div></div>

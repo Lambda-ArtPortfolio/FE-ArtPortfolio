@@ -35,6 +35,7 @@ export const Form = styled.div`
     border-radius: 12px;
     box-shadow: 5px 5px 8px #BFBFBF;
     width: 30%;
+    min-width: 300px;
     align-items: center;
     height: 360px;
     display: flex;
