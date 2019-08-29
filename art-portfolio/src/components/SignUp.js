@@ -5,7 +5,6 @@ import * as Yup from "yup";
 import axios from "axios";
 import {ArtistContext} from '../contexts/ArtistContext'
 import { Context, Header, LoginBtn } from './StyledWidgets';
-import '../App.css'
 
 // const backgroundStyie = {
 //   backgroundColor: 'white', textAlign: 'left',marginLeft: '10%', border: 'medium solid black',width: '300px'
@@ -50,7 +49,7 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
         setArtist('')
       }
   return (
-<div className='crossed' style={formStyle}>
+<div style={formStyle}>
 <div>
       
                       <Context>
@@ -83,6 +82,8 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
   );
 }
 
+
+
 const SignUp = withFormik({
   
   mapPropsToValues({ name, username, password }) {
@@ -104,7 +105,7 @@ const SignUp = withFormik({
       .required("* Password is required")
   }),
 
-  handleSubmit(values, { resetForm, setErrors, setSubmitting, setStatus }) {
+  handleSubmit(values, { resetForm, setErrors, setSubmitting, setStatus, props }) {
     if (values.username === "alreadytaken@atb.dev") {
       setErrors({ username: "* Username is already taken" });
     } else {
@@ -120,8 +121,10 @@ const SignUp = withFormik({
  .then(res => {
     console.log('get res',res)
     console.log('get res.data',res.data)
+    console.log('history',props.history)
     // setStatus(res.data);
       setSubmitting(false);
+      props.history.push('/login');
   })
   .catch(err => {
      console.log('get',err); // There was an error creating the data and logs to console
