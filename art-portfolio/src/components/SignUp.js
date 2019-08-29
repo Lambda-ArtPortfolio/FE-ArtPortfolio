@@ -45,7 +45,8 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
       setArtist(status);
     }
   }, [status,setArtist]);
-      function signOut () {
+
+  function signOut () {
         localStorage.setItem('token','')
         localStorage.setItem('username','')
         setArtist('')
