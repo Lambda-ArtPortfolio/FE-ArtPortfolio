@@ -100,7 +100,7 @@ useEffect(() => {
 export default CreatePost;
 
 const Form = styled.div`
-background-color: #510666;
+background-color: light purple;
 margin: 0 auto;
 margin-top: 40px;
 border: 2px solid #E3E1E1;
