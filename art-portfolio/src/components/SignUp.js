@@ -53,13 +53,13 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
       }
   return (
 <div style={formStyle}>
-<div>     
+<div>      
                       <Context>
                     <Header>
                     <div style={{color: 'white', fontSize: '32px'}}>Display Your Art</div >
                     <div style={{color: 'white'}}>We'll Do The Rest</div >
                     </Header>
-      {/* <button style={marginWStyle} onClick={signOut}>Sign Out</button> */}
+      {/* <LoginBtn onClick={signOut}>Sign Out</LoginBtn> */}
     <Form>
 <div style={margin33Style}>Name
         {touched.name && errors.name && <p style={{color: 'red'}}>{errors.name}</p>}
@@ -83,8 +83,7 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
   );
 }
 
-const SignUp = withFormik({
-  
+const SignUp = withFormik({  
   mapPropsToValues({ name, username, password }) {
     return {
       name: name || "",
@@ -103,7 +102,6 @@ const SignUp = withFormik({
       .min(2, "* Password must be 2 characters or longer")
       .required("* Password is required")
   }),
-
   handleSubmit(values, { resetForm, setErrors, setSubmitting, setStatus, props }) {
     if (values.username === "alreadytaken@atb.dev") {
       setErrors({ username: "* Username is already taken" });
