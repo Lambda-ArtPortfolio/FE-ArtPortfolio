@@ -119,6 +119,7 @@ const SignUp = withFormik({
     console.log('get res',res)
     console.log('get res.data',res.data)
     console.log('history',props.history)
+    console.log('not just history, all props',props)
     // setStatus(res.data);
       setSubmitting(false);
       props.history.push('/login');
