@@ -11,13 +11,13 @@ export const Nav = styled.nav`
     width: 100%;
     align-items: center;
     box-shadow: 5px 5px 8px #BFBFBF;
-    background: #C6CFC4;
+    background: #1C1C1C;
 
     a {
         
         margin-left: 70px;
         text-decoration: none;
-        color: #295420;
+        color: #F0F0F0;
         font-size: 18px;
         font-family: 'Roboto', sans-serif;
         cursor: pointer;
@@ -98,7 +98,7 @@ export const LoginBtn = styled.button`
 `;
 
 export const StyledFooter = styled.div`
-  background: #C6CFC4;
+  background: #1C1C1C;
   height: 80px;
   text-align: center;
 
@@ -108,5 +108,6 @@ export const StyledFooter = styled.div`
     justify-content: center;
     padding-top: 30px;
     font-family: 'Roboto', sans-serif;
+    color: #F0F0F0;
   }
   `;
