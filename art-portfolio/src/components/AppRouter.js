@@ -49,7 +49,6 @@ export default AppRouter;
 
 function SignOut() {
     localStorage.setItem('token',false)
-    let randnum = Math.random()
 return (
     <Nav>
         <a href='https://amazing-saha-bf876d.netlify.com/'>Dakotah</a>
