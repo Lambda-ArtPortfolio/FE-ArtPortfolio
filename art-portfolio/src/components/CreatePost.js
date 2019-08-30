@@ -97,6 +97,7 @@ useEffect(() => {
 export default CreatePost;
 
 const Form = styled.div`
+font-family: 'Roboto', sans-serif;
 background: #F1F4F1;
 margin: 0 auto;
 margin-top: 40px;

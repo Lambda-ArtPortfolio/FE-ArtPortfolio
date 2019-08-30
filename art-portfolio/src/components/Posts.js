@@ -22,6 +22,7 @@ const PostContainer = styled.div`
 
 .posts{
     background: #C6CFC4;
+    font-family: 'Roboto', sans-serif;
     width: 400px;
     display: flex;
     flex-direction: column;
