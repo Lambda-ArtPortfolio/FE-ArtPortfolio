@@ -68,7 +68,7 @@ useEffect(() => {
              <input className = "image"
                 type="text"
                 name="image"
-                placeholder="Upload and Image"
+                placeholder="Add image URL"
                 value={post.image}
                 onChange={handleChange}
               />
