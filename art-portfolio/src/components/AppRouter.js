@@ -24,7 +24,8 @@ const AppRouter = () => {
             <div className="app-router">
                 <Nav>
                     <div className="nav-a">
-                        <Link to='/'>Sign Up</Link>
+                    <Link to='/'>Sign Up</Link>
+                    <Link to='/signout'>Sign Out</Link>
                         <Link to ='/login'>Login</Link>
                         <Link to = '/profile'>Profile</Link>
                     </div>
@@ -33,6 +34,7 @@ const AppRouter = () => {
 
             <Switch>
                 <Route exact path= '/' component={SignUp} />
+                <Route path='/signout' component={SignOut} />
                 <Route path='/login' component={Login} />
                 <PrivateRoute path='/profile' component={ProfilePage} />
                 
@@ -45,3 +47,7 @@ const AppRouter = () => {
 
 export default AppRouter;
 
+function SignOut() {
+    localStorage.setItem('token',false)
+    window.location.assign('https://amazing-saha-bf876d.netlify.com/')
+}

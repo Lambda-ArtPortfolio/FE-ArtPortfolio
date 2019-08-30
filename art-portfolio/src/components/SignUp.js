@@ -76,8 +76,8 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
       <LoginBtn style={margin33BStyle} type='submit' disabled={isSubmitting}>Sign Up</LoginBtn>
 
     </Form>
-    <div style={margin1Style}><div>Glad to have you</div><div>{artist ? artist : ''}</div></div>
     </Context>
+    <div style={margin1Style}><div>Glad to have you</div><div>{artist ? artist : ''}</div></div>
 </div>
 </div>
   );
@@ -119,10 +119,13 @@ const SignUp = withFormik({
     console.log('get res',res)
     console.log('get res.data',res.data)
     console.log('history',props.history)
+    console.log('history',props.history)
+    console.log('window.location',window.location)
     console.log('not just history, all props',props)
     // setStatus(res.data);
       setSubmitting(false);
-      props.history.push('/login');
+      
+       props.history.push('/login');
   })
   .catch(err => {
      console.log('get',err); // There was an error creating the data and logs to console
