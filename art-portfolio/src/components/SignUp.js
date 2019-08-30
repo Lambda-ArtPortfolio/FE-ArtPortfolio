@@ -12,15 +12,15 @@ import { Context, Header, LoginBtn } from './StyledWidgets';
 let formStyle =
   {marginLeft: '33%'}
 const margin33Style =
-{marginLeft: '33%', color: 'white'}
-const marginWStyle =
-{marginLeft: '40%', width: '20%'}
-const margin1Style =
+ {marginLeft: '33%', color: 'white'}
+ const margin33BStyle =
+{marginLeft: '33%', color: 'black'}
+ const margin1Style =
 {marginLeft: '1%', fontStyle: 'oblique', color: 'white'}
 
 formStyle = {
   backgroundImage:
-  `linear-gradient(to top, rgba(81,0,0, 0), rgba(81,6,102,1)),
+  `linear-gradient(to top, rgba(81,0,0,0), rgba(81,6,102,1)),
   url('https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/68680488_10158110637571323_2872412301510574080_o.jpg?_nc_cat=109&_nc_oc=AQlKM8gAcXdVTYfaO7VQPB4jj5psofWNDVsWZaqS7ga73viH3q6JdsX6N1kS7HkMp2DFgwqXw5RJQt223U9wGWT7&_nc_ht=scontent-iad3-1.xx&oh=ef3c44753a30d5188ee82e1b1036112e&oe=5E022BA6')`,
     backgroundColor: '#DCDCDC',
     margin: '0 auto',
@@ -33,7 +33,8 @@ formStyle = {
     alignItems: 'center',
     height: '360px',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: '100px'
 }
 
 function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, status }) {
@@ -44,22 +45,21 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
       setArtist(status);
     }
   }, [status,setArtist]);
-      function signOut () {
+
+  function signOut () {
         localStorage.setItem('token','')
         localStorage.setItem('username','')
         setArtist('')
       }
   return (
 <div style={formStyle}>
-<div>
-      
+<div>     
                       <Context>
                     <Header>
                     <div style={{color: 'white', fontSize: '32px'}}>Display Your Art</div >
                     <div style={{color: 'white'}}>We'll Do The Rest</div >
                     </Header>
-
-      <button style={marginWStyle} onClick={signOut}>Sign Out</button>
+      {/* <button style={marginWStyle} onClick={signOut}>Sign Out</button> */}
     <Form>
 <div style={margin33Style}>Name
         {touched.name && errors.name && <p style={{color: 'red'}}>{errors.name}</p>}
@@ -73,17 +73,15 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
         {touched.password && errors.password && <p style={{color: 'red'}}>{errors.password}</p>}
         <Field type="password" name="password" placeholder="Password" autoComplete="current-password" />
       </div>
-      <LoginBtn style={margin33Style} type='submit' disabled={isSubmitting}>Sign UP</LoginBtn>
+      <LoginBtn style={margin33BStyle} type='submit' disabled={isSubmitting}>Sign Up</LoginBtn>
 
     </Form>
-    <div style={margin1Style}><div>Glad to have you</div><div>{artist ? artist : ''}</div></div>
     </Context>
+    <div style={margin1Style}><div>Glad to have you</div><div>{artist ? artist : ''}</div></div>
 </div>
 </div>
   );
 }
-
-
 
 const SignUp = withFormik({
   
