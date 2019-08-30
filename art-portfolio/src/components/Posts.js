@@ -9,7 +9,7 @@ const Post = ({deletePost, setPostToEdit, post, ...props}) => {
     <img className = "images" src = {post.image} />
     <p>Description: {post.description}</p>
     <button className="del-btn" onClick={e => deletePost(e, post.id)}> X </button>
-    <button className= "edit-btn" onClick={() => setPostToEdit(post)}>EDIT ME</button>
+    <button className= "edit-btn" onClick={() => setPostToEdit(post)}>Edit</button>
   </div>  
   
 </PostContainer>
@@ -21,7 +21,7 @@ export default Post;
 const PostContainer = styled.div`
 
 .posts{
-    background: #6A7D64;
+    background: #C6CFC4;
     width: 400px;
     display: flex;
     flex-direction: column;
@@ -50,14 +50,16 @@ const PostContainer = styled.div`
 }
 
 .edit-btn{
-    width: 50%;
+    width: 60px;
     margin: 0 auto;
+    margin-bottom: 5px;
+    border-radius: 5px;
 }
 
 .del-btn{
     display: inline-block;
     position: relative;
-    bottom: 21rem;
+    bottom: 23rem;
     left:20rem;
     outline: none;
     background: none;
@@ -69,5 +71,9 @@ const PostContainer = styled.div`
     font-size: 1.5rem;
     border-radius: 50%;
     border: solid rgba(79,99,134, .10);
+
+    :hover{
+      background: white;
+    }
 }
 `
