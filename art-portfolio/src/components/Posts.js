@@ -31,15 +31,16 @@ const PostContainer = styled.div`
     border-radius: 8px;
     justify-content: center;
     align-self: flex-start;
-    min-height: 620px;
+    min-height: 455px;
     
     
 }
 
 .images{
-  max-height: 500px;
-  min-height: 500px;
-  border-radius-top: 8px;
+  max-height: 330px;
+  min-height: 300px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   object-fit: cover
   filter: contrast(80%)
     
@@ -56,7 +57,7 @@ const PostContainer = styled.div`
 .del-btn{
     display: inline-block;
     position: relative;
-    bottom: 33rem;
+    bottom: 21rem;
     left:20rem;
     outline: none;
     background: none;
