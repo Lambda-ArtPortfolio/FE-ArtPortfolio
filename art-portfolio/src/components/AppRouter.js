@@ -50,5 +50,11 @@ export default AppRouter;
 function SignOut() {
     localStorage.setItem('token',false)
     let randnum = Math.random()
-    window.location.assign((randnum < 0.333) ? 'https://amazing-saha-bf876d.netlify.com/' : (randnum > 0.666)  ? 'https://amazing-leakey-c7655e.netlify.com/' : 'https://laughing-carson-0d82a5.netlify.com/')
+return (
+    <Nav>
+        <a href='https://amazing-saha-bf876d.netlify.com/'>Dakotah</a>
+        <a href='https://amazing-leakey-c7655e.netlify.com/'>Apetsi</a>
+        <a href='https://laughing-carson-0d82a5.netlify.com/'>Adam</a>
+    </Nav>
+)
 }
