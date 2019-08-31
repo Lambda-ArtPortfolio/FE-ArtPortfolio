@@ -46,11 +46,11 @@ function SignUpForm({ values, errors, touched, isSubmitting, handleSubmit, statu
     }
   }, [status,setArtist]);
 
-  function signOut () {
-        localStorage.setItem('token','')
-        localStorage.setItem('username','')
-        setArtist('')
-      }
+  // function signOut () {
+  //       localStorage.setItem('token','')
+  //       localStorage.setItem('username','')
+  //       setArtist('')
+  //     }
   return (
 <div style={formStyle}>
 <div>      
